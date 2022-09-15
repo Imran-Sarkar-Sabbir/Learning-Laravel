@@ -17,3 +17,21 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/users/[name]', function ($name = null) {
+    return "Hello, I am  " . $name;
+})->where('name', '[a-zA-Z]+');
+
+
+Route::get("/products/{id}", function ($id = null) {
+    return "Your Product id is : " . $id;
+})->where("id", "[0-9]+");
+
+Route::match(['get', 'post'], '/students', function (Request $request) {
+    return "Your Request method is " . $request->method();
+});
+
+Route::any("any", function (Request $request) {
+    return "Your request method " . $request->method();
+});
